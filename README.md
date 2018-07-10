@@ -1,4 +1,4 @@
-Role Name
+OULibraries.ec2-snapshot
 =========
 
 Ansible EC2 Snapshot Role, by default this will configure daily snapshots with a 14 day retention policy
