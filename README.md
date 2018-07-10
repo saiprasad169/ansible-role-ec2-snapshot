@@ -8,6 +8,7 @@ Requirements
 
 * RHEL/Centos7 (Any OS utilizing Yum package manager)
 * AWS CLI
+
 Role Variables
 --------------
 
