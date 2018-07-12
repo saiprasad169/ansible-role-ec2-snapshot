@@ -1,0 +1,7 @@
+---
+- include: ec2_assets.yml
+  when: (((ansible_distribution == "CentOS") or (ansible_distribution == "RedHat")) and (ansible_distribution_major_version == "7") and ("amazon" in ansible_product_version) and (ansible_virtualization_type == "xen") and (ansible_virtualization_role == "guest"))
+  become: true
+  tags:
+  - centos7_ec2
+

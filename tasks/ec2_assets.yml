@@ -1,0 +1,70 @@
+---
+- name: Pip build dependencies are present
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - gcc
+  - python-devel
+
+- name: Verify latest pip and aws-cli is installed
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+  - pip
+  - awscli
+
+- name: Pip build dependencies are absent
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items:
+  - gcc
+  - python-devel
+
+- name: Ensure /opt/oulib/aws/bin exists
+  file:
+    path: /opt/oulib/aws/bin
+    state: directory
+    mode: 0755
+    owner: root
+    group: wheel
+    recurse: yes
+
+- name: Remove existing ebs-snapshot.cron
+  file:
+    path: /etc/cron.daily/ebs-snapshot.cron
+    state: absent
+
+#- name: download ebs-snapshot.sh to /opt/oulib/aws/bin
+#  get_url:
+#    url: https://github.com/OULibraries/aws-ec2-ebs-automatic-snapshot-bash/raw/v20170315.0/ebs-snapshot.sh
+#    dest: /opt/oulib/aws/bin/ebs-snapshot.sh
+#    checksum: md5:cf922fb1c9519f7da7e4b09640aacda4
+#    mode: 0755
+#    owner: root
+#    group: root
+#  tags: assets
+
+- name: Copy helper scripts to /opt/oulib/aws/bin
+  copy:
+    src: "{{ item }}"
+    dest: /opt/oulib/aws/bin
+    mode: 0755
+    owner: root
+    group: root
+  with_items:
+    - ec2_get_account_id.sh
+    - ec2_get_arn.sh
+    - ec2_get_region.sh
+    - ebs-snapshot.sh
+  tags: assets
+
+- name: Add ebs-snapshot.cron to /etc/cron.daily
+  template:
+    src: ebs-snapshot.cron.j2
+    dest: /etc/cron.daily/ebs-snapshot.cron
+    mode: 0755
+    owner: root
+    group: root
