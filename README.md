@@ -6,7 +6,7 @@ Ansible EC2 Snapshot Role, by default this will configure daily snapshots with a
 Requirements
 ------------
 
-* RHEL/Centos7 (Any OS utilizing Yum package manager)
+* EC2 AWS Instance
 * AWS CLI
 
 Role Variables
@@ -17,7 +17,6 @@ Role Variables
 Dependencies
 ------------
 
-OULibraries.ec2-init
 
 Example Playbook
 ----------------
