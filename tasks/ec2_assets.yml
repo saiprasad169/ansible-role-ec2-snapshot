@@ -38,15 +38,15 @@
     path: /etc/cron.daily/ebs-snapshot.cron
     state: absent
 
-#- name: download ebs-snapshot.sh to /opt/oulib/aws/bin
-#  get_url:
-#    url: https://github.com/OULibraries/aws-ec2-ebs-automatic-snapshot-bash/raw/v20170315.0/ebs-snapshot.sh
-#    dest: /opt/oulib/aws/bin/ebs-snapshot.sh
-#    checksum: md5:cf922fb1c9519f7da7e4b09640aacda4
-#    mode: 0755
-#    owner: root
-#    group: root
-#  tags: assets
+- name: download ebs-snapshot.sh to /opt/oulib/aws/bin
+  get_url:
+    url: https://github.com/OULibraries/aws-ec2-ebs-automatic-snapshot-bash/raw/v20170315.0/ebs-snapshot.sh
+    dest: /opt/oulib/aws/bin/ebs-snapshot.sh
+    checksum: md5:cf922fb1c9519f7da7e4b09640aacda4
+    mode: 0755
+    owner: root
+    group: root
+  tags: assets
 
 - name: Copy helper scripts to /opt/oulib/aws/bin
   copy:
