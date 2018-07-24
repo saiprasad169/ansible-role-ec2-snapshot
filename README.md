@@ -25,7 +25,10 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: OULibraries.ec2-snapshot, ebs_snapshot_retention_days: 14 }
+         - role: OULibraries.ec2-snapshot
+      vars:
+         - ebs_snapshot_retention_days: 14 
+         
 
 License
 -------
