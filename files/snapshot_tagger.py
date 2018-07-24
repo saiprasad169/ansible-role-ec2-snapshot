@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import boto3,json,csv
 insta=boto3.client('ec2').describe_instances()
 instlist=[]
